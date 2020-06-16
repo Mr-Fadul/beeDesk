@@ -5,7 +5,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
@@ -67,11 +67,11 @@
             <form class="form-signin" name="formLogin">
                 @csrf
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-              
+
                         <div class="alert alert-danger d-none messageBox" role="alert">
-                          
+
                         </div>
-              
+
                 <div class="form-group">
                     <label for="inputEmail" class="sr-only">Email address</label>
                     <input type="text" id="email" name="email" class="form-control" value="marcello@email.com" placeholder="Email address" required autofocus>
@@ -80,15 +80,15 @@
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 </div>
-                
+
                 <div class="checkbox mb-3">
                     <label>
                     <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>                 
-                </div> 
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </div>
                 {{-- <p class="mt-5 mb-3 text-muted">&copy; </p> --}}
             </form>
         </div>
@@ -98,7 +98,7 @@
     <script>
         $(function(){
             $('form[name="formLogin"]').submit(function(){
-                event.preventDefault();           
+                event.preventDefault();
               $.ajax({
                 url:"{{route('admin.login.do')}}",
                 type:"post",
@@ -106,12 +106,12 @@
                 dataType:"json",
                 success: function(response){
                     if(response.success === true){
-                        window.location.href="{{route('admin')}}";
+                        window.location.href="{{route('home')}}";
                     }else{
-                        $('.messageBox').removeClass('d-none').html("Erro! "+response.message);                  
+                        $('.messageBox').removeClass('d-none').html("Erro! "+response.message);
                     }
                 }
-              });               
+              });
             });
         });
     </script>

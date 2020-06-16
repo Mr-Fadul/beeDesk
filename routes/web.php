@@ -21,11 +21,24 @@ Auth::routes();
 //     return view('site.home');
 // })->name('site.home');
 
-Route::get('/', function () {
-    return view('welcome');
- });
+Route::get('/', 'HomeController@index')->name('home');
 //Rota para criar o usuario
 Route::get('usuarios/novo','UserController@create')->name('user.add');
+
+Route::get('usuarios','UserController@index')->name('users.listAll');
+
+Route::get('usuarios/editar/{user}','UserController@formEditUser')->name('user.formEdit');
+
+Route::get('usuarios/{user}','UserController@listUser')->name('user.list');
+
+//post
+Route::post('usuarios/salvar', 'UserController@store')->name('user.store');
+
+//put/patch
+Route::put('usuarios/edit/{user}','UserController@editar')->name('user.editar');
+
+// //Delete
+Route::delete('usuarios/destroy/{user}', 'UserController@deletar')->name('user.deletar');
 
 
 

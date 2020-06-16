@@ -1,59 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>Home</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>BeeDesk</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url(mix('site/css/bootstrapplus.css'))}}" >
-    <link rel="stylesheet" href="{{ url(mix('site/css/style.css'))}}" >
-  </head>
-  <body>
-    <body>
+    <link rel="stylesheet" href="{{ url(mix('menu/css/bootstrapplus.css'))}}" >
+    <link rel="stylesheet" href="{{ url(mix('menu/css/style.css'))}}" >
 
-        <header>
-          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Laratip´s</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item {{(Route::current()->getName() === 'site.home' ? 'active' : '')}} ">
-                <a class="nav-link" href="{{route('site.home')}}">Home <span class="sr-only">(atual)</span></a>
-                </li>
-                <li class="nav-item  {{(Route::current()->getName() === 'site.curses' ? 'active' : '')}}">
-                  <a class="nav-link" href="{{route('site.curses')}}">Cursos</a>
-                </li>
-                <li class="nav-item  {{(Route::current()->getName() === 'site.contact' ? 'active' : '')}}">
-                  <a class="nav-link" href="{{route('site.contact')}}">Contato</a>
-                </li>
-              </ul>
-              <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-              </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">BeeDesk</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+    ><!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
             </div>
-          </nav>
-        </header>
-    
-        <main role="main">
-
-            @yield('content')
-
-          <!-- FOOTER -->
-          <footer class="container">
-            <p class="float-right"><a href="#">Voltar ao topo</a></p>
-            <p>&copy; Companhia S.A., {{date('Y')}} &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
-          </footer>
+        </div>
+    </form>
+    <!-- Navbar-->
+    <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{route('admin.logout')}}">Logout</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Core</div>
+                    <a class="nav-link" href="index.html">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Dashboard</a>
+                    <div class="sb-sidenav-menu-heading">Interface</div>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Layouts
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                        ></a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        Pages
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                        ></a>
+                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
+                            >Authentication
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                                ></a>
+                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
+                            >Error
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                                ></a>
+                            <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="sb-sidenav-menu-heading">Addons</div>
+                    <a class="nav-link" href="charts.html"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Charts</a
+                    ><a class="nav-link" href="tables.html"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Tables</a
+                    >
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                {{ Auth::user()->name }}
+            </div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+@yield('content')
         </main>
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('site/js/jquery.js') }}"></script>
-    <script src="{{ asset('site/js/bootstrap.js') }}"></script>
-   
-  </body>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2019</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{{ asset('menu/js/jquery.js') }}"></script>
+<script src="{{ asset('menu/js/bootstrap.js') }}"></script>
+
+</body>
 </html>

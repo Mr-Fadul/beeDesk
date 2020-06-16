@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
 public function dashboard(){
     if(Auth::check() === true){
-        return view('admin.dashboard');   
+        return view('admin.dashboard');
     }
     return redirect()->route('admin.login');
 }
@@ -25,16 +25,16 @@ public function showLoginForm(){
 
 public function login(Request $request ){
     //var_dump($request->all());
-   
+
     if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)){
-        //return redirect()->back()->withInput()->withErrors(['O email informado não é válido!']);      
+        //return redirect()->back()->withInput()->withErrors(['O email informado não é válido!']);
         $login['success']=false;
-        $login['message']="O email informado não é válido!"; 
+        $login['message']="O email informado não é válido!";
         echo json_encode($login);
         return;
     }
     $credentials =[
-        'email' => $request->email, 
+        'email' => $request->email,
         'password' => $request->password
     ];
     if(Auth::attempt($credentials)){
@@ -45,7 +45,7 @@ public function login(Request $request ){
     }
     //return redirect()->back()->withInput()->withErrors(['Os dados informados não conferem!']);
     $login['success']=false;
-    $login['message']="Os dados informados não conferem!"; 
+    $login['message']="Os dados informados não conferem!";
     echo json_encode($login);
     return;
 }
