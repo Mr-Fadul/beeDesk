@@ -1,48 +1,95 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <title>Todos os setores</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('site.master.layout')
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        table{
-            border: solid slategray 0.3em;
-        }
-    </style>
-</head>
-<body>
+@section('content')
 <div class="container-fluid">
     <div class="container">
-        <h1 style="align-content: center;"><i class="fas fa-h1"></i>Listagem de Setores</h1>
-        <div class="col-md-12">
-            <table class="table table-striped table-inverse table-responsive ">
-                <thead class="thead-inverse">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                </tr>
-                </thead>
-                <tbody>
+        <h1 style="align-content: center;"><i class="fas fa-h1"></i>Setores</h1>
 
-                @foreach ($setores as $setor)
-                    <tr>
-                        <td scope="row">{{$setor->id }}</td>
-                        <td>{{$setor->name }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>Listagem de Setores
+                <div class="float-right">
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Cadastrar</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach ($setores as $setor)
+                            <tr>
+                                <td scope="row">{{$setor->id }}</td>
+                                <td>{{$setor->name }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro Setor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form name="formSetor" method="post">
+                <div class="modal-body">
+
+                        @csrf
+                        <div class="form-group">
+                            <label>Nome do Setor</label>
+                            <input type="text" name="nome" id="nome" class="form-control">
+                        </div>
+
+                    <div class="alert alert-danger d-none messageBox" role="alert">
+                    </div>
+                    <div class="alert alert-success d-none messageBoxTrue" role="alert">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+@section('scripts')
+<script>
+    $(function(){
+        $('form[name="formSetor"]').submit(function(){
+            event.preventDefault();
+            $.ajax({
+                url:"{{route('add.setores')}}",
+                type:"post",
+                data:$(this).serialize(),
+                dataType:"json",
+                success: function(response){
+                    if(response.success === true){
+                        $('.messageBoxTrue').removeClass('d-none').html(response.message);
+                    }else{
+                        $('.messageBox').removeClass('d-none').html("Erro! "+response.message);
+                    }
+                }
+            });
+        });
+    });
+</script>
+@endsection

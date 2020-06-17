@@ -16,7 +16,15 @@ class LevelController extends Controller
     {
         //
     }
-
+    //retorna as opções para popular um select html por jquery
+    public function select(){
+        $levels = Level::all();
+        $option='<option>Selecione...</option>';
+        foreach ($levels as $level){
+            $option.='<option value="'.$level->id.'">'.$level->name.'</option>';
+        }
+        return response()->json($option);
+    }
     /**
      * Show the form for creating a new resource.
      *

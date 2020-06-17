@@ -18,6 +18,14 @@ class SetorController extends Controller
         return response()->json($setores);
     }
 
+    public function select(){
+        $setores = Setor::all();
+        $option='<option>Selecione...</option>';
+        foreach ($setores as $setor){
+            $option.='<option value="'.$setor->id.'">'.$setor->name.'</option>';
+        }
+        return response()->json($option);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +44,18 @@ class SetorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $setores = new Setor();
+        $setores->name = $request->nome;
+        $setores->save();
+        if(!$setores) {
+            $retorno['success']=false;
+            $retorno['message']='Erro ao salvar';
+        }
+        $retorno['success']=true;
+        $retorno['message']="Cadastrado com sucesso!";
+        echo json_encode($retorno);
+        return;
+
     }
 
     /**

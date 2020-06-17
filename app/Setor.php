@@ -9,7 +9,7 @@ class Setor extends Model
     protected $table = 'setors';
 
     public function user(){
-        return $this->belongsTo(User::class,'setor','id');
+        return $this->belongsToMany(User::class,'setor','id');
     }
 
     public function categories(){

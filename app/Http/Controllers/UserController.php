@@ -5,28 +5,32 @@ namespace App\Http\Controllers;
 use App\Posts;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        $users = User::All();
+
+        return view('user.listAllUsers',[
+            'users' => $users,
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
-        return view('user/register');
+        return view('user.register');
     }
 
     /**
@@ -40,6 +44,8 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->nome;
         $user->email = $request->email;
+        $user->setor = $request->setor;
+        $user->level = $request->level;
         $user->password = Hash::make($request->senha);
         $user->save();
 
@@ -54,12 +60,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $address=$user->address()->first();
-        $posts=$user->posts()->get();
-        return view('listUser',[
+        $setor=$user->setor()->first();
+        $level=$user->level()->first();
+        return view('user.listUser',[
             'user' => $user,
-            'address' => $address,
-            'posts' => $posts
+            'level' => $level,
+            'setor' => $setor
         ]);
     }
 
