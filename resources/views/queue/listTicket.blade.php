@@ -7,11 +7,7 @@
           <div class="card mb-4">
               <div class="card-header">
                   <i class="fas fa-table mr-1"></i>Listagem de Chamados
-                  <div class="float-right">
-                      <a href="{{route('ticket.create')}}" >
-                        <button type="button" class="btn btn-dark" >Cadastrar</button>
-                      </a>
-                  </div>
+                 
               </div>
               <div class="card-body">
                   <div class="table-responsive">
@@ -23,18 +19,15 @@
                             <th>Descrição</th>
                             <th>Categoria</th>
                             <th>Setor</th>
-                            <th>Status</th>
                           </tr>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                             <tr>
-                                 <td scope="row">{{$queue->id }}</td>
-                                <td>{{$queue->ticket()->first()->id }}</td>
-                                <td>{{$queue->priority()->first()->title }}</td>
-                                <td>{{$queue->status()->first()->title}}</td>
-                                <td>{{optional($queue->technician()->first())->name }}</td>
-                                <td>{{$queue->observation }}</td>
-                                <td>editar</td>
+                                <td scope="row">{{$ticket->id }}</td>
+                                <td>{{$ticket->summary }}</td>
+                                <td>{{$ticket->description }}</td>
+                                <td>{{$ticket->category()->first()->title}}</td>
+                                <td>{{$ticket->setor()->first()->name }}</td>
                                 
                                 
                             </tr>

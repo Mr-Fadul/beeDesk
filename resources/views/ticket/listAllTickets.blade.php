@@ -23,7 +23,6 @@
                             <th>Descrição</th>
                             <th>Categoria</th>
                             <th>Setor</th>
-                            <th>Status</th>
                           </tr>
                           </thead>
                           <tbody>
@@ -34,10 +33,7 @@
                                 <td>{{$ticket->description }}</td>
                                 <td>{{$ticket->category()->first()->title}}</td>
                                 <td>{{$ticket->setor()->first()->name }}</td>
-                                <td>
-                                    <a href="{{route('queue.listTicket',['ticket' => $ticket->id])}}">Ver Atendimento</a>
-
-                                </td>
+                                
                                 
                             </tr>
 

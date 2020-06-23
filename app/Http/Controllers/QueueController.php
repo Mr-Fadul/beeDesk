@@ -52,12 +52,9 @@ class QueueController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Ticket $ticket)
-    {
-        $queue = new Queue();
-        $q = $queue->ticketQueue($ticket->id);
-        
+    {        
         return view('queue.listTicket',[
-            'queue' => $q
+            'ticket' => $ticket
         ]);
     }
 
@@ -67,9 +64,11 @@ class QueueController extends Controller
      * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function edit(rc $rc)
+    public function edit(Queue $queue )
     {
-        //
+        return view('queue.editQueue',[
+            'queue' => $queue
+        ]);
     }
 
     /**

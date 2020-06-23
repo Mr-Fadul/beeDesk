@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
     //rota para o atendimento de um ticket especifico
     Route::get('atendimento/{ticket}','QueueController@show')->name('queue.listTicket');
 
+        //rota para editar o atendimento de um ticket especifico
+        Route::get('atendimento/{queue}','QueueController@edit')->name('queue.editTicket');
+
 
     // list all tickets
     //Route::get('/chamados', 'TicketsController@show')->name('ticket.show');

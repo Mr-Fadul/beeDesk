@@ -32,7 +32,11 @@
                                 <td>{{$queue->status()->first()->title}}</td>
                                 <td>{{optional($queue->technician()->first())->name }}</td>
                                 <td>{{$queue->observation }}</td>
-                                <td>editar</td>
+                                <td>
+                                    <a href="{{route('queue.listTicket',['ticket' => $queue->ticket()->first()->id])}}">Ver Chamado</a> / 
+                                    <a href="{{}}">Editar Atendimento</a>
+
+                                </td>
                                 
                             </tr>
 
