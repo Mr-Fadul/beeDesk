@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Categories;
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -14,7 +14,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Categories::all();
+        return response()->json($categories);
     }
 
     /**
@@ -38,53 +39,27 @@ class CategoriesController extends Controller
         //
     }
 
+    public function select(){
+        $categories = Category::all();
+        $option='<option>Selecione...</option>';
+        foreach ($categories as $category){
+            $option.='<option value="'.$category->id.'">'.$category->title.'</option>';
+        }
+        return response()->json($option);
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Categories  $categories
+     * @param  \App\Category  $categories
      * @return \Illuminate\Http\Response
      */
-    public function show(Categories $categories)
+    public function show(Category $categories)
     {
-        $posts=$categories->posts()->get();
-        return view('categoria',[
-            
+        $categories = Category::all();
+        return view('categorias/listCategorias',[            
             'categories' => $categories,
-            'posts' => $posts
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Categories  $categories
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Categories $categories)
-    {
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Categories  $categories
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Categories $categories)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Categories  $categories
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Categories $categories)
-    {
-        //
-    }
 }

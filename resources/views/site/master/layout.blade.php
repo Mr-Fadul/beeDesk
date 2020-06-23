@@ -49,6 +49,14 @@
                         Dashboard
                     </a>
                     <div class="sb-sidenav-menu-heading">Interface</div>
+                    <a class="nav-link" href="{{route('queue.listAllQueue')}}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Fila de atendimento
+                    </a>
+                    <a class="nav-link" href="{{route('ticket.listAllTickets')}}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Chamados
+                    </a>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Configuração
@@ -59,6 +67,7 @@
                             <a class="nav-link" href="{{route('setores')}}">Setores</a>
                             <a class="nav-link" href="layout-sidenav-light.html">Niveis</a>
                             <a class="nav-link" href="{{route('users.listAll')}}">Usuários</a>
+                            <a class="nav-link" href="layout-sidenav-light.html">Categorias</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"

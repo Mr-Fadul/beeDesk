@@ -24,6 +24,23 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/', 'HomeController@index')->name('home');
+    //Rota para lista dos atendimentos
+    Route::get('/atendimento','QueueController@index')->name('queue.listAllQueue');
+
+    //rota para o atendimento de um ticket especifico
+    Route::get('atendimento/{ticket}','QueueController@show')->name('queue.listTicket');
+
+
+    // list all tickets
+    //Route::get('/chamados', 'TicketsController@show')->name('ticket.show');
+    Route::get('chamados','TicketsController@index')->name('ticket.listAllTickets');
+
+    // Rota para os tickets
+    Route::get('/chamados/novo', 'TicketsController@create')->name('ticket.create');
+
+    // post ticket
+    Route::post('chamados/salvar', 'TicketsController@store')->name('ticket.store');
+
     //Rota para criar o usuario
     Route::get('usuarios/novo','UserController@create')->name('user.add');
 
@@ -41,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
 
     // //Delete
     Route::delete('usuarios/destroy/{user}', 'UserController@deletar')->name('user.deletar');
+
+    //Rota para listar categorias do sistema
+    Route::get('/categorias/select', 'CategoriesController@select')->name('select.categorias');
 
     //Rota para a lista de setores do sistema
     Route::get('/setores', 'SetorController@show')->name('setores');
