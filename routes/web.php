@@ -30,8 +30,13 @@ Route::middleware(['auth'])->group(function () {
     //rota para o atendimento de um ticket especifico
     Route::get('atendimento/{ticket}','QueueController@show')->name('queue.listTicket');
 
-        //rota para editar o atendimento de um ticket especifico
-        Route::get('atendimento/{queue}','QueueController@edit')->name('queue.editTicket');
+    //rota para editar o atendimento de um ticket especifico
+    Route::get('atendimento/editar/{queue}/{ticket}','QueueController@edit')->name('queue.editQueue');
+
+    //update na fila de atendimento de um ticket
+    Route::post('atendimento/salvar', 'QueueController@store')->name('queue.store');
+
+        
 
 
     // list all tickets
@@ -61,6 +66,17 @@ Route::middleware(['auth'])->group(function () {
 
     // //Delete
     Route::delete('usuarios/destroy/{user}', 'UserController@deletar')->name('user.deletar');
+
+    //Rota para listar status do sistema
+    Route::get('/status/select', 'StatusController@select')->name('select.status');
+    Route::get('/status/json', 'StatusController@index');
+
+    //Rota para listar 'prioridade' do sistema
+    Route::get('/priority/select', 'PriorityController@select')->name('select.priority');
+    Route::get('/priority/json', 'PriorityController@index');
+
+    //Rota para listar usuario do sistema
+    Route::get('/user/select', 'UserController@select')->name('select.user');
 
     //Rota para listar categorias do sistema
     Route::get('/categorias/select', 'CategoriesController@select')->name('select.categorias');

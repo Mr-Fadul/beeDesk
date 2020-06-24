@@ -3,10 +3,10 @@
 @section('content')
     <div class="container-fluid">
       <div class="container">
-        <h1 style="align-content: center;"><i class="fas fa-h1"></i>Chamados</h1>
+        <h1 style="align-content: center;"><i class="fas fa-h1"></i>Chamado</h1>
           <div class="card mb-4">
               <div class="card-header">
-                  <i class="fas fa-table mr-1"></i>Listagem de Chamados
+                  <i class="fas fa-table mr-1"></i>Caracteristicas do chamado
                  
               </div>
               <div class="card-body">

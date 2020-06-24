@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\rc;
 use App\Queue;
 use App\Ticket;
+use App\Priority;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,15 @@ class QueueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $queue = new Queue();
+        $queue = Queue::find($request->queueid);
+        $queue->priority = $request->priority;
+        $queue->status = $request->status;
+        $queue->technician = $request->technician;
+        $queue->observation = $request->observation;
+        $queue->save();
+
+        return redirect()->route('queue.listAllQueue');
     }
 
     /**
@@ -64,10 +73,11 @@ class QueueController extends Controller
      * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function edit(Queue $queue )
+    public function edit(Queue $queue, Ticket $ticket )
     {
         return view('queue.editQueue',[
-            'queue' => $queue
+            'queue' => $queue,
+            'ticket' => $ticket
         ]);
     }
 

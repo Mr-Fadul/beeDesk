@@ -80,6 +80,15 @@ class UserController extends Controller
         //
     }
 
+    public function select(Request $request){
+        $user = User::all();
+        $option='<option>'.$request->technician.'</option>';
+        foreach ($user as $u){
+            $option.='<option value="'.$u->id.'">'.$u->name.'</option>';
+        }
+        return response()->json($option);
+    }
+
     /**
      * Update the specified resource in storage.
      *

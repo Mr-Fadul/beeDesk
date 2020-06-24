@@ -34,7 +34,7 @@
                                 <td>{{$queue->observation }}</td>
                                 <td>
                                     <a href="{{route('queue.listTicket',['ticket' => $queue->ticket()->first()->id])}}">Ver Chamado</a> / 
-                                    <a href="{{}}">Editar Atendimento</a>
+                                    <a href="{{route('queue.editQueue',['queue' => $queue->id, 'ticket' => $queue->ticket()->first()->id])}}">Editar Atendimento</a>
 
                                 </td>
                                 
