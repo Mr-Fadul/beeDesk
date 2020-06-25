@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
       <div class="container">
-        <h1 style="align-content: center;"><i class="fas fa-h1"></i>Fila de atendimento</h1>
+
           <div class="card mb-4">
               <div class="card-header">
                   <i class="fas fa-table mr-1"></i>Listagem da fila de Atendimento
@@ -14,28 +14,31 @@
                       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead class="thead-inverse">
                           <tr>
-                            <th>ID</th>
                             <th>Chamado</th>
                             <th>Prioridade</th>
                             <th>Status</th>
                             <th>Responsável</th>
                             <th>Observação</th>
+                            <th>Atualizado</th>
                             <th>Ação</th>
                           </tr>
                           </thead>
                           <tbody>
                             @foreach ($queues as $queue)
                             <tr>
-                                <td scope="row">{{$queue->id }}</td>
-                                <td>{{$queue->ticket()->first()->id }}</td>
-                                <td>{{$queue->priority()->first()->title }}</td>
-                                <td>{{$queue->status()->first()->title}}</td>
-                                <td>{{optional($queue->technician()->first())->name }}</td>
-                                <td>{{$queue->observation }}</td>
-                                <td>
-                                    <a href="{{route('queue.listTicket',['ticket' => $queue->ticket()->first()->id])}}">Ver Chamado</a> / 
-                                    <a href="{{route('queue.editQueue',['queue' => $queue->id, 'ticket' => $queue->ticket()->first()->id])}}">Editar Atendimento</a>
-
+                                <td class="align-middle">{{$queue->ticket()->first()->id }}</td>
+                                <td class="align-middle">{{$queue->priority()->first()->title }}</td>
+                                <td class="align-middle">{{$queue->status()->first()->title}}</td>
+                                <td class="align-middle">{{optional($queue->technician()->first())->name }}</td>
+                                <td class="align-middle">{{$queue->observation }}</td>
+                                <td class="align-middle">{{$queue->updated_at }}</td>
+                                <td class="align-middle">
+                                    <div style="margin-bottom: 4px;">
+                                    <a class="btn btn-light btn-sm" role="button" style="margin-bttom: 5px;" href="{{route('queue.listTicket',['ticket' => $queue->ticket()->first()->id])}}">Visualizar</a>
+                                  </div>
+                                  <div>
+                                     <a class="btn btn-light btn-sm" role="button" href="{{route('queue.editQueue',['queue' => $queue->id, 'ticket' => $queue->ticket()->first()->id])}}">Editar</a>
+                                     </div>
                                 </td>
                                 
                             </tr>
